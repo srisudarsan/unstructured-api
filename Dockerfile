@@ -21,6 +21,11 @@ ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
 FROM base as python-deps
 COPY --chown=${NB_USER}:${NB_USER} requirements/base.txt requirements-base.txt
+
+USER root
+RUN apk add --no-cache git
+USER ${NB_USER}
+
 RUN ${PIP} install pip==${PIP_VERSION}
 RUN ${PIP} install --no-cache -r requirements-base.txt
 
