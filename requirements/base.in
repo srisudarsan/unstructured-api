@@ -1,5 +1,5 @@
 -c constraints.in
--e git+https://github.com/srisudarsan/unstructured.git@custom_chunking#egg=unstructured
+-e git+https://github.com/srisudarsan/unstructured.git@custom_chunking#egg=unstructured[all-docs]
 
 # Pinning click due to a unicode issue in black
 # can remove after black drops support for Python 3.6
