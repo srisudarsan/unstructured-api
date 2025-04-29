@@ -3,7 +3,7 @@
 # extras. Putting a dependency here will only affect dependency sets that contain them -- in other
 # words, if something does not require a constraint, it will not be installed.
 ####################################################################################################
-unstructured @ git+https://github.com/srisudarsan/unstructured.git@main
+unstructured @ git+https://github.com/srisudarsan/unstructured.git@custom_chunking
 
 numpy<2.0.0
 # later versions of Starlette break middleware
