@@ -20,8 +20,11 @@ USER ${NB_USER}
 ENV PYTHONPATH="${PYTHONPATH}:${HOME}"
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
+USER root
 COPY --from=unstructured_src . /tmp/unstructured-build/unstructured
-RUN chmod -R a+w /tmp/unstructured-build/unstructured
+RUN chown -R ${NB_USER}:${NB_USER} /tmp/unstructured-build/unstructured && \
+    chmod -R a+w /tmp/unstructured-build/unstructured
+USER ${NB_USER}
 
 FROM base as python-deps
 COPY --chown=${NB_USER}:${NB_USER} requirements/base.txt requirements-base.txt
