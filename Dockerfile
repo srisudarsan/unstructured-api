@@ -21,6 +21,7 @@ ENV PYTHONPATH="${PYTHONPATH}:${HOME}"
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
 COPY --from=unstructured_src . /tmp/unstructured-build/unstructured
+RUN chmod -R a+w /tmp/unstructured-build/unstructured
 
 FROM base as python-deps
 COPY --chown=${NB_USER}:${NB_USER} requirements/base.txt requirements-base.txt
