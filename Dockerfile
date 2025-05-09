@@ -1,4 +1,5 @@
-# syntax=docker/dockerfile:experimental
+# syntax=docker/dockerfile:1.4
+
 FROM quay.io/unstructured-io/base-images:wolfi-base-latest as base
 
 # NOTE(crag): NB_USER ARG for mybinder.org compat:
@@ -18,6 +19,8 @@ USER ${NB_USER}
 
 ENV PYTHONPATH="${PYTHONPATH}:${HOME}"
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
+
+COPY --from=unstructured_src . /tmp/unstructured-build/unstructured
 
 FROM base as python-deps
 COPY --chown=${NB_USER}:${NB_USER} requirements/base.txt requirements-base.txt
