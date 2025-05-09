@@ -57,7 +57,7 @@ install-pandoc:
 # is mounted under /home/notebook-user/local/ when the image is started with
 # docker-start-api or docker-start-jupyter
 
-DOCKER_IMAGE ?= pipeline-family-${PIPELINE_FAMILY}-dev:latest
+DOCKER_IMAGE ?= unstructured-api-custom
 
 .PHONY: docker-build
 docker-build:
