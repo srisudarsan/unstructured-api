@@ -5,7 +5,7 @@ FROM quay.io/unstructured-io/base-images:wolfi-base-latest as base
 # NOTE(crag): NB_USER ARG for mybinder.org compat:
 #             https://mybinder.readthedocs.io/en/latest/tutorials/dockerfile.html
 ARG NB_USER=notebook-user
-ARG NB_UID=1000
+ARG NB_UID=10000
 ARG PIP_VERSION
 ARG PIPELINE_PACKAGE
 ARG PYTHON_VERSION="3.11"

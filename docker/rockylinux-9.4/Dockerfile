@@ -4,7 +4,7 @@ FROM quay.io/unstructured-io/base-images:rocky9.2-9@sha256:73d8492452f086144d4b9
 # NOTE(crag): NB_USER ARG for mybinder.org compat:
 #             https://mybinder.readthedocs.io/en/latest/tutorials/dockerfile.html
 ARG NB_USER=notebook-user
-ARG NB_UID=1000
+ARG NB_UID=10000
 ARG PIP_VERSION
 ARG PIPELINE_PACKAGE
 
