@@ -12,3 +12,4 @@ backoff
 pypdf
 pycryptodome
 psutil
+pdfminer-six==20250327 # pinning to a specific version due to bug, will update to latest
