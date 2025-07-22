@@ -1,4 +1,5 @@
-# syntax=docker/dockerfile:experimental
+# syntax=docker/dockerfile:1.4
+
 FROM quay.io/unstructured-io/base-images:wolfi-base-latest as base
 
 # NOTE(crag): NB_USER ARG for mybinder.org compat:
@@ -19,8 +20,19 @@ USER ${NB_USER}
 ENV PYTHONPATH="${PYTHONPATH}:${HOME}"
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
+USER root
+COPY --from=unstructured_src . /tmp/unstructured-build/unstructured
+RUN chown -R ${NB_USER}:${NB_USER} /tmp/unstructured-build/unstructured && \
+    chmod -R a+w /tmp/unstructured-build/unstructured
+USER ${NB_USER}
+
 FROM base as python-deps
 COPY --chown=${NB_USER}:${NB_USER} requirements/base.txt requirements-base.txt
+
+USER root
+RUN apk add --no-cache git
+USER ${NB_USER}
+
 RUN ${PIP} install pip==${PIP_VERSION}
 RUN ${PIP} install --no-cache -r requirements-base.txt
 
