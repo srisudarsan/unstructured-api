@@ -21,6 +21,19 @@ ENV PYTHONPATH="${PYTHONPATH}:${HOME}"
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
 USER root
+
+RUN apk update && \
+    apk add --no-cache \
+        python3 \
+        py3-pip \
+        py3-virtualenv \
+        py3-setuptools \
+        py3-wheel \
+        git && \
+    ln -sf python3 /usr/bin/python3.11
+
+# Prepare working directory
+WORKDIR ${HOME}
 COPY --from=unstructured_src . /tmp/unstructured-build/unstructured
 RUN chown -R ${NB_USER}:${NB_USER} /tmp/unstructured-build/unstructured && \
     chmod -R a+w /tmp/unstructured-build/unstructured
